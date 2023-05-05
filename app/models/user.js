@@ -11,13 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.Car, {
+        foreignKey: "createdBy",
+        as: "Creator"
+      });
+      this.hasMany(models.Car, {
+        foreignKey: "deletedBy",
+        as: "Deletor"
+      });
+      this.hasMany(models.Car, {
+        foreignKey: "updatedBy",
+        as: "Updator"
+      });
     }
   }
   User.init({
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    role: DataTypes.ENUM
+    role: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',

@@ -11,6 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.User, {
+        foreignKey: "createdBy",
+        as: "Creator"
+      });
+      this.belongsTo(models.User, {
+        foreignKey: "deletedBy",
+        as: "Deletor"
+      });
+      this.belongsTo(models.User, {
+        foreignKey: "updatedBy",
+        as: "Updator"
+      });
     }
   }
   Car.init({
@@ -19,9 +31,30 @@ module.exports = (sequelize, DataTypes) => {
     size: DataTypes.STRING,
     image: DataTypes.STRING,
     available: DataTypes.BOOLEAN,
-    createdBy: DataTypes.STRING,
-    updatedBy: DataTypes.STRING,
-    deletedBy: DataTypes.STRING
+    createdBy: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "User",
+        key: "id"
+      }
+    },
+    updatedBy: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "User",
+        key: "id"
+      }
+    },
+    deletedBy: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "User",
+        key: "id"
+      }
+    }
   }, {
     sequelize,
     modelName: 'Car',

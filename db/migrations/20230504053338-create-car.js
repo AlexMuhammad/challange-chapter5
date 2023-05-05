@@ -24,13 +24,34 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       createdBy: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: "Users"
+          },
+          key: "id"
+        }
       },
       updatedBy: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: "Users"
+          },
+          key: "id"
+        }
       },
       deletedBy: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: "Users"
+          },
+          key: "id"
+        }
       },
       createdAt: {
         allowNull: false,

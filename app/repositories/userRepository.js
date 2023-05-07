@@ -1,5 +1,4 @@
 const { User } = require("../models");
-console.log("userrrr", User);
 
 module.exports = {
     create(createArgs) {

@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     updatedBy: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: "User",
         key: "id"
@@ -49,15 +49,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     deletedBy: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: "User",
         key: "id"
       }
-    }
+    },
+    deletedAt: DataTypes.DATE,
   }, {
     sequelize,
+    timestamps: true,
     modelName: 'Car',
+    paranoid: true,
   });
   return Car;
 };

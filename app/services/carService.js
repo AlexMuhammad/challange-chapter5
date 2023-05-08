@@ -42,5 +42,30 @@ module.exports = {
         } catch (error) {
             return error.message
         }
+    },
+    async getAll() {
+        try {
+            const payloadCar = carRepository.getAll();
+            return payloadCar;
+        } catch (error) {
+            return error.message;
+        }
+    },
+    async getAllById(id) {
+        try {
+            const cars = await carRepository.getAllById(id);
+            const carPayload = {
+                id: cars.id,
+                name: cars.name,
+                price: cars.price,
+                size: cars.size,
+                image: cars.image,
+                available: cars.available,
+                // createdAt: 
+            }
+            return carPayload
+        } catch (error) {
+            return error.message
+        }
     }
 }

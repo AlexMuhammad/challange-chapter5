@@ -93,13 +93,27 @@ module.exports = {
     isSuperAdmin(req, res, next) {
         try {
             const { role } = req.user;
-            console.log("role", role);
 
             if (role === "superadmin") return next();
 
             res.status(403).json({
                 status: "FAIL",
                 message: "YOU DONT HAVE AN ACCESS",
+            })
+        } catch (error) {
+            res.status(401).json({
+                message: "Unauthorized"
+            })
+        }
+    },
+    isAdmin(req, res, next) {
+        try {
+            const { role } = req.user;
+            if (role === "admin") return next()
+
+            res.status(403).json({
+                status: "FAIL",
+                message: "YOU DONT HAVE AN ACCESS"
             })
         } catch (error) {
             res.status(401).json({

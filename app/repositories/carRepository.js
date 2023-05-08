@@ -1,9 +1,10 @@
-const { Car } = require("../models");
+const { Car, User } = require("../models");
 
 module.exports = {
     create(createArgs) {
         return Car.create(createArgs)
     },
+
     update(id, updateArgs) {
         return Car.update(updateArgs, {
             where: {
@@ -11,6 +12,7 @@ module.exports = {
             },
         });
     },
+
     delete(id) {
         return Car.destroy({
             where: {
@@ -19,16 +21,61 @@ module.exports = {
         },);
     },
 
-    find(id) {
-        return Car.findByPk(id);
-    },
-
-    findAll() {
+    getAll() {
         return Car.findAll();
     },
+    getAllById(id) {
+        return Car.findOne({
+            where: {
+                id
+            }
+        })
+    },
 
-    getTotalUser() {
-        return Car.count();
+    getAllDetail() {
+        return Car.findAll({
+            include: [
+                {
+                    model: User,
+                    as: "Creator"
+                },
+                {
+                    model: User,
+                    as: "Deletor"
+                },
+                {
+                    model: User,
+                    as: "Updetor"
+                },
+            ],
+            attributes: {
+                exclude: ["createdBy", "updatedBy", "deletedBy"]
+            },
+            paranoid: false
+        })
+    },
+
+    getDetail() {
+        return Car.findAll({
+            include: [
+                {
+                    model: "User",
+                    as: "Creator"
+                },
+                {
+                    model: "User",
+                    as: "Deletor"
+                },
+                {
+                    model: "User",
+                    as: "Updetor"
+                },
+            ],
+            attributes: {
+                exclude: ["createdBy", "updatedBy", "deletedBy"]
+            },
+            paranoid: false
+        })
     },
 
     findUserByEmail(email) {

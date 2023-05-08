@@ -68,5 +68,30 @@ module.exports = {
         } catch (error) {
             return error.message
         }
+    },
+    async getAllCar(req, res) {
+        try {
+            const cars = await carService.getAll();
+            res.status(200).json({
+                status: "OK",
+                data: cars
+            })
+        } catch (error) {
+            return error.message;
+        }
+    },
+    async getAllCarById(req, res) {
+        try {
+            const carsId = req.params.id;
+            const carPayload = await carService.getAllById(carsId);
+
+            res.status(200).json({
+                status: "OK",
+                message: "Successss",
+                data: carPayload
+            })
+        } catch (error) {
+
+        }
     }
 }

@@ -4,11 +4,10 @@
  */
 
 /** Destruct environment variable to get database configuration */
+require("dotenv").config()
+
 const {
-  DB_USERNAME = "postgres",
-  DB_PASSWORD = "testestes",
-  DB_HOST = "127.0.0.1",
-  DB_NAME = "db_challange_5",
+  DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME, DB_DIALECT
 } = process.env;
 
 module.exports = {
@@ -17,7 +16,7 @@ module.exports = {
     password: DB_PASSWORD,
     database: `${DB_NAME}_development`,
     host: DB_HOST,
-    dialect: "postgres",
+    dialect: DB_DIALECT,
   },
   test: {
     username: DB_USERNAME,

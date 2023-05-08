@@ -375,6 +375,135 @@
             "bearerAuth": []
           }
         ]
+      },
+      "post": {
+        "tags": ["Cars"],
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "summary": "Create New Car",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "OK"
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Success"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "example": "1"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "alex ganteng"
+                      },
+                      "price": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 100000
+                      },
+                      "size": {
+                        "type": "string",
+                        "example": "small"
+                      },
+                      "image": {
+                        "type": "string",
+                        "example": "https://res.cloudinary.com/dlgyb9w63/image/upload/v1683484955/car-api-challenge/rjd6zul3wpacenjyys5v.jpg"
+                      },
+                      "available": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "createdBy": {
+                        "type": "integer",
+                        "example": "1"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "example": "2023-05-06T07:41:44.381Z"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "example": "2023-05-06T07:41:44.381Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "status admin successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "adminbaru"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "adminbaru@gmail.com"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed error because forbidden access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/DontHavePermit"
+                    }
+                  ]
+                },
+                "examples": {
+                  "dontHavePermit": {
+                    "summary": "example invalid role access",
+                    "value": {
+                      "status": "FAIL",
+                      "message": "You don't have permission to access!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/cars/{id}": {

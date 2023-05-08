@@ -1,24 +1,48 @@
-# Binar: Express.js
+# CHALLANGE 5 CAR API
 
-Repository ini ditujukan sebagai boilerplate dalam membuat sebuah HTTP Server menggunakan Express.js
-Repository ini menggunakan Service Repository Pattern, yang artinya di dalam repository ini terdapat modul model, controller, service, dan repository.
+This project is about implemetation of Design Pattern with Service Repository, Authentication with JWT Token and API documentation with standarized Open API which used Swagger UI.
 
-## Getting Started
+## DIAGRAM DATABASE
 
-Untuk mulai membuat sebuah implementasi dari HTTP Server, mulainya menginspeksi file [`app/index.js`](./app/index.js), dan lihatlah salah satu contoh `controller` yang ada di [`app/controllers/mainController.js`](./app/controllers/mainController.js)
+![erd challange 5](/erd-car-api.png)
 
-Lalu untuk menjalankan development server, kalian tinggal jalanin salah satu script di package.json, yang namanya `develop`.
+## Super Admin
 
-```sh
-yarn develop
-```
+- Email : superadmin@mail.com
+- Password : superadmin123
 
-## Database Management
+## API Documentation
 
-Di dalam repository ini sudah terdapat beberapa script yang dapat digunakan dalam memanage database, yaitu:
+- http://{baseUrl}/api/v1/cars
 
-- `yarn db:create` digunakan untuk membuat database
-- `yarn db:drop` digunakan untuk menghapus database
-- `yarn db:migrate` digunakan untuk menjalankan database migration
-- `yarn db:seed` digunakan untuk melakukan seeding
-- `yarn db:rollback` digunakan untuk membatalkan migrasi terakhir
+## Do this before run!
+
+1. Install node_modules
+
+   > npm install
+
+2. Setting .env as like as yours
+
+   > DB_USERNAME = ""
+   > DB_PASSWORD = ""
+   > DB_HOST = ""
+   > DB_NAME = ""
+   > DB_DIALECT = ""
+   > CLOUNDINARY_NAME= ""
+   > API_KEY= ""
+   > API_SECRET= ""
+
+3. Create Database
+
+   > npm run db:create
+
+4. Migrate the model
+
+   > npm run db:migrate
+
+5. Use seeder
+
+   > npm run db:seed
+
+6. Here we goooooo
+   > npm run dev
